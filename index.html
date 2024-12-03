@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Major Assignment 3 - Author Network Visualization</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #f9f9f9; /* Light gray background */
+            color: #333; /* Standard text color */
+        }
+        h1, h2, h3, h4 {
+            color: #0056b3; /* Blue headings */
+        }
+        .card {
+            background-color: #ffffff; /* White card background */
+            border: 1px solid #ddd; /* Light border */
+        }
+        .card-header {
+            font-weight: bold;
+        }
+        .visualization-container {
+            background-color: #f9f9f9; /* Matching body background */
+            border: 1px solid #ccc; /* Subtle border for visualization */
+        }
+        #tooltip {
+            background-color: #333; /* Dark background */
+            color: #fff; /* White text */
+            border-radius: 4px;
+            padding: 5px 10px;
+        }
+        input[type="range"] {
+            accent-color: #0056b3; /* Blue slider */
+        }
+
+        /* Custom styles for sections */
+        .author-network .card-header {
+            background-color: #007bff; /* Blue */
+            color: #fff; /* White text */
+        }
+        .author-network .card-body {
+            background-color: #e7f1ff; /* Light blue */
+        }
+        .statistics .card-header {
+            background-color: #28a745; /* Green */
+            color: #fff; /* White text */
+        }
+        .statistics .card-body {
+            background-color: #eafbea; /* Light green */
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Header Section -->
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="text-center">Major Assignment 3</h1>
+                        <h2 class="text-center">Shaik Sajid Ali</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Author Collaboration Network Section -->
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="card author-network">
+                    <div class="card-header">
+                        <h3>Author Collaboration Network</h3>
+                    </div>
+                    <div class="card-body visualization-container">
+                        <svg id="network"></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Force Parameters and Statistics Section -->
+        <div class="row mt-3">
+            <!-- Force Parameters -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Force Parameters</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label>Charge Strength: <span id="chargeValue">-30</span></label>
+                            <input type="range" id="chargeStrength" min="-200" max="50" value="-30" class="form-range">
+                        </div>
+                        <div class="mb-3">
+                            <label>Link Strength: <span id="linkValue">1</span></label>
+                            <input type="range" id="linkStrength" min="0" max="2" step="0.1" value="1" class="form-range">
+                        </div>
+                        <div class="mb-3">
+                            <label>Collision Radius: <span id="collideValue">20</span></label>
+                            <input type="range" id="collideRadius" min="5" max="50" value="20" class="form-range">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="col-md-6">
+                <div class="card statistics">
+                    <div class="card-header">
+                        <h4>Statistics</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Total Authors: <span id="totalAuthors">0</span></p>
+                        <p>Total Links: <span id="totalLinks">0</span></p>
+                        <div id="countryLegend"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="tooltip" class="tooltip"></div>
+    <script src="script.js"></script>
+</body>
+</html>
